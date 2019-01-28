@@ -1,0 +1,139 @@
+﻿<Window
+	x:Class="ImageScraper.Views.MainView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="clr-namespace:ImageScraper.Properties"
+	xmlns:viewModels="clr-namespace:ImageScraper.ViewModels"
+	Title="MainWindow"
+	Width="560"
+	Height="400"
+	mc:Ignorable="d">
+	<Window.DataContext>
+		<viewModels:MainViewModel />
+	</Window.DataContext>
+	<Grid>
+		<StackPanel>
+			<GroupBox Margin="5" Header="Загрузка">
+				<WrapPanel>
+					<Button
+						Margin="3"
+						Padding="3"
+						Command="{Binding Start}"
+						Content="Начать с начала" />
+					<Button
+						Margin="3"
+						Padding="3"
+						Command="{Binding StopProcess}"
+						Content="Остановить" />
+
+				</WrapPanel>
+			</GroupBox>
+			<GroupBox Margin="5" Header="Загрузка с продолжением">
+				<WrapPanel>
+					<Button
+						Margin="3"
+						Padding="3"
+						Command="{Binding StartFromPosition}"
+						Content="Продолжить с числового ID" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdA}"
+						ToolTip="0-35" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdB}"
+						ToolTip="0-35" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdC}"
+						ToolTip="0-35" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdD}"
+						ToolTip="0-35" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdE}"
+						ToolTip="0-35" />
+					<TextBox
+						Width="30"
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericIdF}"
+						ToolTip="0-35" />
+					<Button
+						Margin="3"
+						Padding="3"
+						Command="{Binding SetRandomNumericId}"
+						Content="Рандом" />
+				</WrapPanel>
+			</GroupBox>
+			<GroupBox Margin="5" Header="Настройка">
+				<WrapPanel>
+					<Button
+						Margin="3"
+						Padding="3"
+						Command="{Binding SelectSavePath}"
+						Content="Выбрать путь сохранения" />
+					<TextBox
+						x:Name="SavePathTextBlock"
+						Margin="3"
+						Padding="3"
+						IsEnabled="False"
+						Text="{Binding Source={x:Static p:Settings.Default}, Path=SavePath, Mode=TwoWay}" />
+				</WrapPanel>
+			</GroupBox>
+			<GroupBox Margin="5" Header="Информация">
+				<StackPanel>
+					<TextBlock
+						Margin="3"
+						Padding="3"
+						Text="{Binding Url}"
+						TextWrapping="Wrap" />
+					<TextBlock
+						Margin="3"
+						Padding="3"
+						Text="{Binding ImageId}"
+						TextWrapping="Wrap" />
+					<TextBlock
+						Margin="3"
+						Padding="3"
+						Text="{Binding NumericId}"
+						TextWrapping="Wrap" />
+					<TextBlock
+						Margin="3"
+						Padding="3"
+						Text="{Binding ImageNumber}"
+						TextWrapping="Wrap" />
+				</StackPanel>
+			</GroupBox>
+		</StackPanel>
+		<WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+			<TextBlock
+				Margin="3"
+				Padding="3"
+				Text="Exynil" />
+			<TextBlock
+				Margin="3"
+				Padding="3"
+				Text="{Binding Version}" />
+			<TextBlock Margin="3" Padding="3">
+				<Hyperlink Command="{Binding Hyperlink}" NavigateUri="https://github.com/exynil">
+					<TextBlock Text="Исходный код на GitHub" />
+				</Hyperlink>
+			</TextBlock>
+		</WrapPanel>
+	</Grid>
+</Window>
